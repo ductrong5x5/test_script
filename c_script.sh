@@ -80,7 +80,8 @@ echo "==================================================="
 echo "=====> Checking pip and setuptools     (7)"
 echo "==================================================="
 
-python3 -m pip install -U pip python3 -m pip install -U setuptools  
+python3 -m pip install -U pip 
+python3 -m pip install -U setuptools  
 
 # Install nvflare
 echo ""
