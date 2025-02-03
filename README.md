@@ -15,7 +15,7 @@ This repository contains scripts for setting up server and client connections fo
 ## Prerequisites
 
 Before using the scripts, ensure you have the following:
-- **Git:**
+- **Git**
 
 
 ## Setup Instructions
