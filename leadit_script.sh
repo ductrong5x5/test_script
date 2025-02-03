@@ -2,7 +2,7 @@
 
 # Prompt for the server ip address
 read -p "3/Enter server hostname:" server_host
-read -p "4/Enter server IP address:" server_ip
+
 
 # Display ip address info
 echo "==================================================="
@@ -10,8 +10,7 @@ echo "=====> Finding IP     (1)"
 echo "==================================================="
 ih=$(hostname -I | awk '{print $1}')
 echo "IP Address: $ih"
-echo "Server IP Address: $server_ip"
-nc -zv $server_ip 22
+
 
 
 # Check if python3 is installed
