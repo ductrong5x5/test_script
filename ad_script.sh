@@ -1,15 +1,12 @@
 #!/bin/bash
-# Prompt for the hostname of client
-read -p "1/Enter this client hostname (Example: wombat35):" client_hostname
-read -p "2/Enter this client site number (Example: site-1):" client_sitenum
+# Prompt for the hostname of admin
+read -p "1/Enter this admin hostname (Example: wombat35):" client_hostname
+
 # Prompt for the server ip address
 read -p "3/Enter server hostname:" server_host
 read -p "4/Enter server IP address:" server_ip
 
 # Prompt for the admin ip address
-read -p "5/Enter admin hostname:" admin_host
-read -p "6/Enter admin IP address:" admin_ip
-
 # Display ip address info
 ip a
 echo "==================================================="
@@ -20,7 +17,7 @@ echo "hostname: $client_hostname"
 echo "IP Address: $ih"
 echo "Server IP Address: $server_ip"
 nc -zv $server_ip 22
-nc -zv $admin_ip 22
+
 
 # Check if python3 is installed
 echo ""
@@ -98,20 +95,12 @@ else
     python3 -m pip install nvflare
 fi
 
-# Copy folder from admin client
-echo ""
-echo "==================================================="
-echo "=====> Copy folder from admin client    (9)"
-echo "==================================================="
-read -p "7/Enter foldername of nvflare admin create :" admin_workfol
-echo "8/"
-scp -r "$admin_host:/home/server/$admin_workfol"/workspace/example_project/prod_00/$client_sitenum .
 
 # Now connecting to server
-echo ""
-echo "==================================================="
-echo "=====> Connecting to server    (10)"
-echo "==================================================="
-./$client_sitenum/startup/start.sh
+#echo ""
+#echo "==================================================="
+#echo "=====> Connecting to server    (10)"
+#echo "==================================================="
+#./$client_sitenum/startup/start.sh
 
 
