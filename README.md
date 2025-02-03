@@ -16,10 +16,6 @@ This repository contains scripts for setting up server and client connections fo
 
 Before using the scripts, ensure you have the following:
 
-- Python 3.x
-- Docker
-- NVFlare installed on your system
-- Any necessary dependencies based on your environment (check the NVFlare documentation for specifics)
 
 ## Setup Instructions
 
