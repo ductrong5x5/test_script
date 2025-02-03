@@ -7,8 +7,8 @@ read -p "3/Enter server hostname:" server_host
 read -p "4/Enter server IP address:" server_ip
 
 # Prompt for the admin ip address
-read -p "5/Enter admin hostname:" admin_host
-read -p "6/Enter admin IP address:" admin_ip
+read -p "5/Enter IT lead hostname:" it_host
+read -p "6/Enter IT lead IP address:" it_ip
 
 # Display ip address info
 ip a
@@ -20,7 +20,9 @@ echo "hostname: $client_hostname"
 echo "IP Address: $ih"
 echo "Server IP Address: $server_ip"
 nc -zv $server_ip 22
-nc -zv $admin_ip 22
+nc -zv $it_ip 22
+nc -zv $server_host 22
+nc -zv $it_host 22
 
 # Check if python3 is installed
 echo ""
@@ -103,9 +105,9 @@ echo ""
 echo "==================================================="
 echo "=====> Copy folder from admin client    (9)"
 echo "==================================================="
-read -p "7/Enter foldername of nvflare admin create :" admin_workfol
+read -p "7/Enter foldername of nvflare IT lead create :" it_workfol
 echo "8/"
-scp -r "$admin_host:/home/server/$admin_workfol"/workspace/example_project/prod_00/$client_sitenum .
+scp -r "$it_host:/home/server/$it_workfol"/workspace/example_project/prod_00/$client_sitenum .
 
 # Now connecting to server
 echo ""
