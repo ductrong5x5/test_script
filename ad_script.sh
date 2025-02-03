@@ -7,6 +7,8 @@ read -p "Enter server IP address:" server_ip
 
 read -p "Enter lead IT hostname:" it_host
 read -p "Enter lead IT IP address:" it_ip
+
+read -p "Enter port that server is listening to :" p_a
 # Display ip address info
 echo "==================================================="
 echo "=====> Finding IP     (1)"
@@ -18,8 +20,8 @@ echo "Server IP Address: $server_ip"
 echo "Testing connection with server"
 nc -zv $it_ip 22
 nc -zv $it_host 22
-nc -zv $server_ip 22
-nc -zv $server_host 22
+nc -zv $server_ip $p_a
+nc -zv $server_host $p_a
 
 
 # Check if python3 is installed
@@ -105,7 +107,7 @@ echo "=====> Copy folder from lead IT client    (9)"
 echo "==================================================="
 read -p "Enter foldername of nvflare lead IT create :" leadit_workfol
 read -p "Enter project name :" project_name
-read -p "Enter admin name :" admin_name
+read -p "Enter admin name(default: admin@nvdia.com) :" admin_name
 echo "8/"
 scp -r "$it_host:/home/server/$leadit_workfol"/workspace/$project_name/prod_00/$admin_name .
 
