@@ -22,5 +22,4 @@ Before using the scripts, ensure you have the following:
 1. **Clone the Repository:**
    Clone this repository to your local machine:
    ```bash
-   git clone https://github.com/yourusername/NVFlare.git
-   cd NVFlare
+   git clone https://github.com/ductrong5x5/NVFlare.git
