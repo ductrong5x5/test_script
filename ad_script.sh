@@ -117,16 +117,16 @@ sed -i "s/name: example_project/name: $project_name/" "$PROJECT_YML"
 
 # Step 3: Modify admin section (name, type, and org)
 sed -i 's/name: admin@nvidia.com/name: admin@ornl.gov/' "$PROJECT_YML"
+sed -i 's/type: admin/type: admin/' "$PROJECT_YML"
 sed -i 's/org: nvidia/org: ornl/' "$PROJECT_YML"
 
-# Step 4: Ask how many clients to create and create them
-read -p "How many clients do you want to add? " CLIENT_COUNT
+# Step 4: Ask how many additional clients to create (starting from site-3)
+read -p "How many additional clients do you want? " CLIENT_COUNT
 
-for i in $(seq 1 "$CLIENT_COUNT"); do
+# Step 5: Add clients starting from site-3
+for i in $(seq 3 $((2 + CLIENT_COUNT))); do
     CLIENT_NAME="site-$i"
-    echo -e "\n  - name: $CLIENT_NAME" >> "$PROJECT_YML"
-    echo "    type: client" >> "$PROJECT_YML"
-    echo "    org: ornl" >> "$PROJECT_YML"
+    sed -i "/participants:/a \ \ - name: $CLIENT_NAME\n\ \ \ \ type: client\n\ \ \ \ org: ornl" "$PROJECT_YML"
 done
 
 echo "Changes made to $PROJECT_YML"
