@@ -107,7 +107,7 @@ sed -i "s/name: example_project/name: $project_name/" "$PROJECT_YML"
 read -p "What is the admin name you want(default: admin@nvidia.com) : " admin_name
 sed -i "s/name: admin@nvidia.com/name: $admin_name/" "$PROJECT_YML"
 read -p "What is the server name you want(example: wormbat35) : " server_host
-sed -i "s/name: server1/name: $server_host/" "$PROJECT_YML"
+sed -i "s/server1/$server_host/" "$PROJECT_YML"
 
 read -p "What is the organization name you want(default: nvdia) : " org
 sed -i "s/org: nvidia/org: $org/" "$PROJECT_YML"
