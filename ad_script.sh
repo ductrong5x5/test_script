@@ -1,19 +1,14 @@
 #!/bin/bash
-# Prompt for the hostname of admin
-read -p "1/Enter this admin hostname (Example: wombat35):" client_hostname
 
 # Prompt for the server ip address
 read -p "3/Enter server hostname:" server_host
 read -p "4/Enter server IP address:" server_ip
 
-# Prompt for the admin ip address
 # Display ip address info
-ip a
 echo "==================================================="
 echo "=====> Finding IP     (1)"
 echo "==================================================="
 ih=$(hostname -I | awk '{print $1}')
-echo "hostname: $client_hostname"
 echo "IP Address: $ih"
 echo "Server IP Address: $server_ip"
 nc -zv $server_ip 22
@@ -116,9 +111,13 @@ read -p "What is the project name that you want: " project_name
 sed -i "s/name: example_project/name: $project_name/" "$PROJECT_YML"
 
 # Step 3: Modify admin section (name, type, and org)
-sed -i 's/name: admin@nvidia.com/name: admin@ornl.gov/' "$PROJECT_YML"
-sed -i 's/type: admin/type: admin/' "$PROJECT_YML"
-sed -i 's/org: nvidia/org: ornl/' "$PROJECT_YML"
+read -p "What is the admin name you want(default: admin@nvidia.com) : " admin_name
+sed -i "s/name: admin@nvidia.com/name: $admin_name/" "$PROJECT_YML"
+
+sed -i "s/name: server1/name: $server_host/" "$PROJECT_YML"
+
+read -p "What is the organization name you want(default: nvdia) : " org
+sed -i "s/org: nvidia/org: $org/" "$PROJECT_YML"
 
 # Step 4: Ask how many additional clients to create (starting from site-3)
 read -p "How many additional clients do you want? " CLIENT_COUNT
@@ -130,4 +129,17 @@ for i in $(seq 3 $((2 + CLIENT_COUNT))); do
 done
 
 echo "Changes made to $PROJECT_YML"
+
+# Now create start-up kit
+echo ""
+echo "==================================================="s
+echo "=====> Do provision, generate startup kit    (11)"
+echo "==================================================="
+
+nvflare provision -p project.yml
+echo ""
+echo "==================================================="
+echo "=====> All file/ startup kit is generated, please  "
+echo "=====> tell admin, client, server to get file      "  
+echo "==================================================="
 
