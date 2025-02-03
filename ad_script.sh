@@ -2,8 +2,8 @@
 # Prompt for the hostname of client
 #read -p "1/Enter this admin hostname (Example: wombat35):" admin_hostname
 # Prompt for the server ip address
-read -p "2/Enter server hostname:" server_host
-read -p "3/Enter server IP address:" server_ip
+read -p "Enter server hostname:" server_host
+read -p "Enter server IP address:" server_ip
 
 # Display ip address info
 echo "==================================================="
@@ -98,9 +98,9 @@ echo ""
 echo "==================================================="
 echo "=====> Copy folder from lead IT client    (9)"
 echo "==================================================="
-read -p "7/Enter foldername of nvflare lead IT create :" leadit_workfol
-read -p "7/Enter project name :" project_name
-read -p "7/Enter admin name :" admin_name
+read -p "Enter foldername of nvflare lead IT create :" leadit_workfol
+read -p "Enter project name :" project_name
+read -p "Enter admin name :" admin_name
 echo "8/"
 scp -r "$admin_host:/home/server/$leadit_workfol"/workspace/$project_name/prod_00/$admin_name .
 
