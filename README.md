@@ -2,8 +2,7 @@
 
 ## Project Overview
 
-NVFlare is a platform for federated learning that enhances processing speed, security, and data transfer efficiency. This project leverages NVFlare along with SmartNIC for optimized data handling during machine learning training processes.
-
+NVFlare is a platform for federated learning that enhances processing speed, security, and data transfer efficiency. 
 This repository contains scripts for setting up server and client connections for NVFlare.
 
 ## NVFlare Details
