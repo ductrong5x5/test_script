@@ -1,17 +1,11 @@
 #!/bin/bash
 
-# Prompt for the server ip address
-read -p "3/Enter server hostname:" server_host
-
-
 # Display ip address info
 echo "==================================================="
 echo "=====> Finding IP     (1)"
 echo "==================================================="
 ih=$(hostname -I | awk '{print $1}')
 echo "IP Address: $ih"
-
-
 
 # Check if python3 is installed
 echo ""
