@@ -5,6 +5,8 @@
 read -p "Enter server hostname:" server_host
 read -p "Enter server IP address:" server_ip
 
+read -p "Enter lead IT hostname:" it_host
+read -p "Enter lead IT IP address:" it_ip
 # Display ip address info
 echo "==================================================="
 echo "=====> Finding IP     (1)"
@@ -14,8 +16,11 @@ ih=$(hostname -I | awk '{print $1}')
 echo "IP Address: $ih"
 echo "Server IP Address: $server_ip"
 echo "Testing connection with server"
+nc -zv $it_ip 22
+nc -zv $it_host 22
 nc -zv $server_ip 22
 nc -zv $server_host 22
+
 
 # Check if python3 is installed
 echo ""
@@ -102,7 +107,7 @@ read -p "Enter foldername of nvflare lead IT create :" leadit_workfol
 read -p "Enter project name :" project_name
 read -p "Enter admin name :" admin_name
 echo "8/"
-scp -r "$admin_host:/home/server/$leadit_workfol"/workspace/$project_name/prod_00/$admin_name .
+scp -r "$it_host:/home/server/$leadit_workfol"/workspace/$project_name/prod_00/$admin_name .
 
 # Now connecting to server
 echo ""
