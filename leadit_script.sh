@@ -121,6 +121,11 @@ for i in $(seq 3 $((2 + CLIENT_COUNT))); do
     sed -i "/participants:/a \ \ - name: $CLIENT_NAME\n\ \ \ \ type: client\n\ \ \ \ org: ornl" "$PROJECT_YML"
 done
 
+read -p "What is the port to client (default:8002) : " p_c
+sed -i "s/8002/$p_c/" "$PROJECT_YML"
+read -p "What is the port to admin (default:8003) : " p_a
+sed -i "s/8003/$p_a/" "$PROJECT_YML"
+
 echo "Changes made to $PROJECT_YML"
 
 # Now create start-up kit
