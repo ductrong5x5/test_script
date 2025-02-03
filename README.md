@@ -24,3 +24,7 @@ Before using the scripts, ensure you have the following:
    Clone this repository to your local machine:
    ```bash
    git clone https://github.com/ductrong5x5/test_script.git
+2. **active script file**
+   
+   ```bash 
+   chmod +x ./test_script/*.sh
