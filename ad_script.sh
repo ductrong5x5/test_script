@@ -101,11 +101,33 @@ echo "=====> Create project.yml file    (9)"
 echo "==================================================="
 nvflare provision
 
-# Now connecting to server
-#echo ""
-#echo "==================================================="
-#echo "=====> Connecting to server    (10)"
-#echo "==================================================="
-#./$client_sitenum/startup/start.sh
+# Now modify project.yml file
+echo ""
+echo "==================================================="s
+echo "=====> Modify project.yml file    (10)"
+echo "==================================================="
+# Path to the project.yml file
+PROJECT_YML="project.yml"
 
+# Step 1: Prompt for the project name
+read -p "What is the project name that you want: " project_name
+
+# Step 2: Modify the project name dynamically using the input
+sed -i "s/name: example_project/name: $project_name/" "$PROJECT_YML"
+
+# Step 3: Modify admin section (name, type, and org)
+sed -i 's/name: admin@nvidia.com/name: admin@ornl.gov/' "$PROJECT_YML"
+sed -i 's/org: nvidia/org: ornl/' "$PROJECT_YML"
+
+# Step 4: Ask how many clients to create and create them
+read -p "How many clients do you want to add? " CLIENT_COUNT
+
+for i in $(seq 1 "$CLIENT_COUNT"); do
+    CLIENT_NAME="site-$i"
+    echo -e "\n  - name: $CLIENT_NAME" >> "$PROJECT_YML"
+    echo "    type: client" >> "$PROJECT_YML"
+    echo "    org: ornl" >> "$PROJECT_YML"
+done
+
+echo "Changes made to $PROJECT_YML"
 
