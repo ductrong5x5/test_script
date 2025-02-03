@@ -10,6 +10,10 @@ read -p "4/Enter server IP address:" server_ip
 read -p "5/Enter IT lead hostname:" it_host
 read -p "6/Enter IT lead IP address:" it_ip
 
+# Prompt for the port
+read -p "5/Enter port that server is listening to:" p_c
+
+
 # Display ip address info
 ip a
 echo "==================================================="
@@ -19,9 +23,9 @@ ih=$(hostname -I | awk '{print $1}')
 echo "hostname: $client_hostname"
 echo "IP Address: $ih"
 echo "Server IP Address: $server_ip"
-nc -zv $server_ip 22
+nc -zv $server_ip $p_c
+nc -zv $server_host $p_c
 nc -zv $it_ip 22
-nc -zv $server_host 22
 nc -zv $it_host 22
 
 # Check if python3 is installed
@@ -106,8 +110,8 @@ echo "==================================================="
 echo "=====> Copy folder from admin client    (9)"
 echo "==================================================="
 read -p "7/Enter foldername of nvflare IT lead create :" it_workfol
-echo "8/"
-scp -r "$it_host:/home/server/$it_workfol"/workspace/example_project/prod_00/$client_sitenum .
+read -p "Enter project name :" project_name
+scp -r "$it_host:/home/server/$it_workfol"/workspace/$project_name/prod_00/$client_sitenum .
 
 # Now connecting to server
 echo ""
