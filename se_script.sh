@@ -1,26 +1,24 @@
 #!/bin/bash
-# Prompt for the hostname of client
-read -p "1/Enter this client hostname (Example: wombat35):" client_hostname
-read -p "2/Enter this client site number (Example: site-1):" client_sitenum
-# Prompt for the server ip address
-read -p "3/Enter server hostname:" server_host
-read -p "4/Enter server IP address:" server_ip
 
-# Prompt for the admin ip address
-read -p "5/Enter admin hostname:" admin_host
-read -p "6/Enter admin IP address:" admin_ip
+read -p "Enter server hostname:" server_host
+
+read -p "Enter IT lead hostname:" it_host
+read -p "Enter IT lead IP address:" it_ip
+
+read -p "Enter admin hostname:" admin_host
+read -p "Enter admin IP address:" admin_ip
 
 # Display ip address info
-ip a
 echo "==================================================="
 echo "=====> Finding IP     (1)"
 echo "==================================================="
 ih=$(hostname -I | awk '{print $1}')
-echo "hostname: $client_hostname"
+echo "hostname: $server_host"
 echo "IP Address: $ih"
-echo "Server IP Address: $server_ip"
-nc -zv $server_ip 22
-nc -zv $admin_ip 22
+nc -zv $it_ip 22
+nc -zv $it_host 22
+#nc -zv $admin_ip 22
+#nc -zv $admin_host 22
 
 # Check if python3 is installed
 echo ""
@@ -103,15 +101,15 @@ echo ""
 echo "==================================================="
 echo "=====> Copy folder from admin client    (9)"
 echo "==================================================="
-read -p "7/Enter foldername of nvflare admin create :" admin_workfol
-echo "8/"
-scp -r "$admin_host:/home/server/$admin_workfol"/workspace/example_project/prod_00/$client_sitenum .
+read -p "7/Enter foldername of nvflare IT lead create :" it_fol
+
+scp -r "$it_host:/home/server/$it_fol"/workspace/example_project/prod_00/$server_host .
 
 # Now connecting to server
 echo ""
 echo "==================================================="
 echo "=====> Connecting to server    (10)"
 echo "==================================================="
-./$client_sitenum/startup/start.sh
+./$server_host/startup/start.sh
 
 
