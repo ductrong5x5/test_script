@@ -94,7 +94,12 @@ else
     echo "nvflare is not installed. Installing..."
     python3 -m pip install nvflare
 fi
-
+# Now creating project.yml file
+echo ""
+echo "==================================================="s
+echo "=====> Create project.yml file    (9)"
+echo "==================================================="
+nvflare provision
 
 # Now connecting to server
 #echo ""
