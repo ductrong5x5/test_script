@@ -75,14 +75,15 @@ echo "==================================================="
 PROJECT_YML="project.yml"
 
 # Step 1: Prompt for the project name
-read -p "What is the project name that you want: " project_name
+#read -p "What is the project name that you want: " project_name
 
 # Step 2: Modify the project name dynamically using the input
-sed -i "s/name: example_project/name: $project_name/" "$PROJECT_YML"
+
+sed -i "s/name: example_project/name: test/" "$PROJECT_YML"
 
 # Step 3: Modify admin section (name, type, and org)
-read -p "What is the admin name you want(default: admin@nvidia.com) : " admin_name
-sed -i "s/name: admin@nvidia.com/name: $admin_name/" "$PROJECT_YML"
+
+sed -i "s/name: admin@nvidia.com/name: admin@ornl.gov/" "$PROJECT_YML"
 read -p "What is the server name you want(example: wormbat35) : " server_host
 sed -i "s/server1/$server_host/" "$PROJECT_YML"
 
@@ -90,7 +91,7 @@ read -p "What is the organization name you want(default: nvdia) : " org
 sed -i "s/org: nvidia/org: $org/" "$PROJECT_YML"
 
 # Step 4: Ask how many additional clients to create (starting from site-3)
-read -p "How many additional clients do you want? " CLIENT_COUNT
+read -p "How many additional clients do you want(Current is 2)? " CLIENT_COUNT
 
 # Step 5: Add clients starting from site-3
 for i in $(seq 3 $((2 + CLIENT_COUNT))); do
