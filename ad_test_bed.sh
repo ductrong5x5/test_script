@@ -4,8 +4,7 @@
 echo "==================================================="
 echo "=====> Finding IP     (1)"
 echo "==================================================="
-ih=$(hostname -I | awk '{print $1}')
-echo "IP Address: $ih"
+ip a
 
 # Check if python3 is installed
 echo ""
