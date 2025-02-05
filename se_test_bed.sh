@@ -70,7 +70,7 @@ echo "=====> Copy folder from admin client    (9)"
 echo "==================================================="
 read -p "7/Enter foldername of nvflare admin create :" it_fol
 #read -p "Enter project name :" project_name
-scp -r "$admin_host:/home/server/$it_fol"/workspace/test/prod_00/$server_host .
+scp -r "$admin_host:ccsopen/home/orh/zw2c/$it_fol"/workspace/test/prod_00/$server_host .
 
 # Now connecting to server
 echo ""
