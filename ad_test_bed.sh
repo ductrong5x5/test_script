@@ -22,13 +22,8 @@ echo ""
 echo "==================================================="
 echo "=====> Checking python3-venv     (3)"
 echo "==================================================="
-if ! dpkg -l | grep -q python3-venv; then
-    echo "python3-venv is not installed. Installing.."
-    sudo apt-get install python3-venv -y
-else
     echo "python3-venv is already installed. Skipping installation."
-fi
-
+    
 echo ""
 echo "==================================================="
 echo "=====> Creating environment     (4)"
